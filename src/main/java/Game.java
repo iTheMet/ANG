@@ -2,7 +2,26 @@ public class Game {
 
 
     static BordTriangke[] board = new BordTriangke[24];
+    static char turnOfTheColor ;
+    static int countOfTurn = 0;
+    public static void chooseFirst(){
+        int whiteDice = 0;
+        int blackDice = 0;
+        while (whiteDice==blackDice) {
+            whiteDice = 1 + (int) (Math.random() * 6);
+            blackDice = 1 + (int) (Math.random() * 6);
+        }
+        if (whiteDice>blackDice){
+            System.out.println("Первыми ходят белые "+whiteDice+" против "+blackDice);
+            turnOfTheColor = 'W';
+        }
+        else{
+            System.out.println("Первыми ходят чёрные "+blackDice+" против "+whiteDice);
+            turnOfTheColor = 'B';
+        }
 
+
+    }
     public static void setGame(){
 
 
@@ -26,7 +45,7 @@ public class Game {
             else
                 System.out.print("|");
 
-            System.out.print(i+1);
+            System.out.print(i);
 
 
 
@@ -132,10 +151,10 @@ public class Game {
             else
                 System.out.print("|");
 
-            if (i<9)
+            if (i<10)
                 System.out.print(" ");
 
-            System.out.print(i+1);
+            System.out.print(i);
 
 
 
@@ -143,7 +162,30 @@ public class Game {
         System.out.println(" B");
 
     }
+    public static void turn(){
+
+        if (turnOfTheColor=='W' && countOfTurn!=0)
+            System.out.println("Ход номер "+countOfTurn+"| ходят белые");
+        if (turnOfTheColor=='B' && countOfTurn!=0)
+            System.out.println("Ход номер "+countOfTurn+ "| ходят Чёрные");
+        int dice1 = 1 + (int) (Math.random() * 6);
+        int dice2 = 1 + (int) (Math.random() * 6);
+        System.out.println("Бросок костей");
+        if (dice1!=dice2){
+            System.out.println("выпали числа "+dice1+" "+dice2);
+        }
+        else {
+            System.out.println("выпали числа "+dice1+" "+dice2);
+            System.out.println("Сука гош");
+        }
 
 
 
-}
+
+        } //Думать тут
+
+
+    }
+
+
+

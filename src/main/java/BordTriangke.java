@@ -3,7 +3,7 @@
 public class BordTriangke {
 
    private int numOfStones = 0;
-    private char colorOfStones = 'N';
+    private char colorOfStones = 'N'; //W - White. B - Black. N - None.
     private boolean isEmpty =true;
 
 
