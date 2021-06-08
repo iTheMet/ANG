@@ -4,28 +4,33 @@ public class Game {
     static BordTriangke[] board = new BordTriangke[24];
     static char turnOfTheColor ;
     static int countOfTurn = 0;
-    public static void chooseFirst(){
-        int whiteDice = 0;
-        int blackDice = 0;
-        while (whiteDice==blackDice) {
-            whiteDice = 1 + (int) (Math.random() * 6);
-            blackDice = 1 + (int) (Math.random() * 6);
+    public static void chooseFirst()    {
+        Dice blackDice = new Dice();
+        Dice whiteDice = new Dice();
+        //int whiteDice = 0;
+        //int blackDice = 0;
+        while (whiteDice.getDiceNum()==blackDice.getDiceNum()) {
+           // whiteDice = 1 + (int) (Math.random() * 6);
+            //blackDice = 1 + (int) (Math.random() * 6);
+            whiteDice.rollDice();
+            blackDice.rollDice();
         }
-        if (whiteDice>blackDice){
-            System.out.println("Первыми ходят белые "+whiteDice+" против "+blackDice);
+        if (whiteDice.getDiceNum()>blackDice.getDiceNum()){
+            System.out.println("Первыми ходят белые "+whiteDice.getDiceNum()+" против "+blackDice.getDiceNum());
             turnOfTheColor = 'W';
         }
         else{
-            System.out.println("Первыми ходят чёрные "+blackDice+" против "+whiteDice);
+            System.out.println("Первыми ходят чёрные "+blackDice.getDiceNum()+" против "+whiteDice.getDiceNum());
             turnOfTheColor = 'B';
         }
 
 
     }
-    public static void setGame(){
+    public static void setGame(/*int boardSize*/){
 
 
-        for (int i = 0; i < 24; i++ ){
+
+        for (int i = 0; i < board.length; i++ ){
             BordTriangke test = new BordTriangke();
             board[i]=test;
           //  System.out.println(board[i]);
