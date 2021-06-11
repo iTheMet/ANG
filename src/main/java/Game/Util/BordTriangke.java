@@ -1,4 +1,4 @@
-
+package Game.Util;
 
 public class BordTriangke {
 

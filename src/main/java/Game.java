@@ -1,33 +1,51 @@
+import Game.Util.BordTriangke;
+import Game.Util.Dice;
+
 public class Game {
+    static Dice[] dicePack = new Dice[4];
 
 
-    static BordTriangke[] board = new BordTriangke[24];
+
+    static Dice utilDice1 = new Dice();
+    static Dice utilDice2 = new Dice();
+
+    static BordTriangke[] board ;
     static char turnOfTheColor ;
+
     static int countOfTurn = 0;
     public static void chooseFirst()    {
-        Dice blackDice = new Dice();
-        Dice whiteDice = new Dice();
+
         //int whiteDice = 0;
         //int blackDice = 0;
-        while (whiteDice.getDiceNum()==blackDice.getDiceNum()) {
+        while (dicePack[2].getDiceNum()==dicePack[1].getDiceNum()) {
            // whiteDice = 1 + (int) (Math.random() * 6);
             //blackDice = 1 + (int) (Math.random() * 6);
-            whiteDice.rollDice();
-            blackDice.rollDice();
+            dicePack[2].rollDice();
+            dicePack[1].rollDice();
         }
-        if (whiteDice.getDiceNum()>blackDice.getDiceNum()){
-            System.out.println("Первыми ходят белые "+whiteDice.getDiceNum()+" против "+blackDice.getDiceNum());
+        if (dicePack[2].getDiceNum()>dicePack[1].getDiceNum()){
+            System.out.println("Первыми ходят белые "+dicePack[2].getDiceNum()+" против "+dicePack[1].getDiceNum());
             turnOfTheColor = 'W';
         }
         else{
-            System.out.println("Первыми ходят чёрные "+blackDice.getDiceNum()+" против "+whiteDice.getDiceNum());
+            System.out.println("Первыми ходят чёрные "+dicePack[1].getDiceNum()+" против "+dicePack[2].getDiceNum());
             turnOfTheColor = 'B';
         }
 
 
     }
-    public static void setGame(/*int boardSize*/){
+    public static void setGame(int boardSize){
+        while (0 != boardSize % 4){
+            boardSize = boardSize + 1 ;}
+    board= new BordTriangke[boardSize];
+        System.out.println("Доска "+board.length);
 
+
+        for (int i = 0; i < dicePack.length; i++ ){
+            Dice whiteDice = new Dice();
+            dicePack[i]=whiteDice;
+            //  System.out.println(board[i]);
+        }
 
 
         for (int i = 0; i < board.length; i++ ){
@@ -35,20 +53,23 @@ public class Game {
             board[i]=test;
           //  System.out.println(board[i]);
         }
-        board[23].setNumOfStones(15);
-        board[23].setColorOfStones('W');
-        board[23].setEmpty(false);
-        board[11].setNumOfStones(15);
-        board[11].setColorOfStones('B');
-        board[11].setEmpty(false);
+        board[board.length-1].setNumOfStones(15);
+        board[board.length-1].setColorOfStones('W');
+        board[board.length-1].setEmpty(false);
+        board[board.length/2-1].setNumOfStones(15);
+        board[board.length/2-1].setColorOfStones('B');
+        board[board.length/2-1].setEmpty(false);
     }
     public static void showGame(){
         System.out.print('A');
-        for (int i = 12; i<board.length;  i++ ) {
-            if(i!=18)
+        for (int i = board.length/2; i<board.length;  i++ ) {
+            if(i!= board.length/4*3)
                 System.out.print(" ");
             else
                 System.out.print("|");
+
+            if (i<10)
+                System.out.print(" ");
 
             System.out.print(i);
 
@@ -60,8 +81,8 @@ public class Game {
 ////////////////////////////////////////////////////////////////////
 
         System.out.print('A');
-        for (int i = 12; i<board.length;  i++ ) {
-            if(i!=18)
+        for (int i = board.length/2; i<board.length;  i++ ) {
+            if(i!= board.length/4*3)
                 System.out.print(" ");
             else
                 System.out.print("|");
@@ -72,8 +93,8 @@ public class Game {
 ////////////////////////////////////////////////////////////////////
 
         System.out.print("|");
-        for (int i = 12; i<board.length;  i++ ) {
-            if(i!=18)
+        for (int i = board.length/2; i<board.length;  i++ ) {
+            if(i!= board.length/4*3)
                 System.out.print(" ");
             else
                 System.out.print("|");
@@ -87,8 +108,8 @@ public class Game {
 
 
         System.out.print("|");
-        for (int i = 12; i<board.length;  i++ ) {
-            if(i!=18)
+        for (int i = board.length/2; i<board.length;  i++ ) {
+            if(i!= board.length/4*3)
                 System.out.print(" ");
             else
                 System.out.print("|");
@@ -100,8 +121,8 @@ public class Game {
         System.out.println(" |");
 ////////////////////////////////////////////////////////////////////
         System.out.print('A');
-        for (int i = 12; i<board.length;  i++ ) {
-            if(i!=18)
+        for (int i = board.length/2; i<board.length;  i++ ) {
+            if(i!= board.length/4*3)
                 System.out.print(" ");
             else
                 System.out.print("|");
@@ -112,8 +133,8 @@ public class Game {
 ////////////////////////////////////////////////////////////////////
         System.out.print("|");
 
-        for (int i = 11; i>-1;  i-- ) {
-            if(i!=5)
+        for (int i = board.length/2-1; i>-1;  i-- ) {
+            if(i!=board.length/4-1)
                 System.out.print(" ");
             else
                 System.out.print("|");
@@ -124,8 +145,8 @@ public class Game {
         System.out.println(" |");
 ////////////////////////////////////////////////////////////////////
         System.out.print("|");
-        for (int i = 11; i>-1;  i-- ) {
-            if(i!=5)
+        for (int i = board.length/2-1; i>-1;  i-- ) {
+            if(i!=board.length/4-1)
                 System.out.print(" ");
             else
                 System.out.print("|");
@@ -137,8 +158,8 @@ public class Game {
         System.out.println(" |");
 ////////////////////////////////////////////////////////////////////
         System.out.print('A');
-        for (int i = 12; i<board.length;  i++ ) {
-            if(i!=18)
+        for (int i = board.length/2; i<board.length;  i++ ) {
+            if(i!= board.length/4*3)
                 System.out.print(" ");
             else
                 System.out.print("|");
@@ -150,8 +171,8 @@ public class Game {
 
 ////////////////////////////////////////////////////////////////////
         System.out.print('A');
-        for (int i = 11; i>-1;  i-- ) {
-            if(i!=5)
+        for (int i = board.length/2-1; i>-1;  i-- ) {
+            if(i!=board.length/4-1)
                 System.out.print(" ");
             else
                 System.out.print("|");
@@ -168,19 +189,24 @@ public class Game {
 
     }
     public static void turn(){
+        countOfTurn++;
 
         if (turnOfTheColor=='W' && countOfTurn!=0)
             System.out.println("Ход номер "+countOfTurn+"| ходят белые");
         if (turnOfTheColor=='B' && countOfTurn!=0)
             System.out.println("Ход номер "+countOfTurn+ "| ходят Чёрные");
-        int dice1 = 1 + (int) (Math.random() * 6);
-        int dice2 = 1 + (int) (Math.random() * 6);
+
+
+
+
+        // int dice1 = 1 + (int) (Math.random() * 6);
+        //int dice2 = 1 + (int) (Math.random() * 6);
         System.out.println("Бросок костей");
-        if (dice1!=dice2){
-            System.out.println("выпали числа "+dice1+" "+dice2);
+        if (dicePack[1].getDiceNum()!=dicePack[2].getDiceNum()){
+            System.out.print("выпали числа "+dicePack[1].getDiceNum()+" "+dicePack[2].getDiceNum());
         }
         else {
-            System.out.println("выпали числа "+dice1+" "+dice2);
+            System.out.println("выпали числа "+dicePack[1].getDiceNum()+" "+dicePack[2].getDiceNum());
             System.out.println("Сука гош");
         }
 
