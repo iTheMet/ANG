@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.io.InputStream;
 
 public class Main extends Application {
 
@@ -12,8 +15,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         String fxmlFile = "/fxml/sample.fxml";
         Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("ЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТЭТОТЕСТ");
+        primaryStage.setScene(new Scene(root, 800, 600));
+
+        InputStream iconStream = getClass().getResourceAsStream("/images/rusticIcon.jpg");
+        Image image = new Image(iconStream);
+        primaryStage.getIcons().add(image);
+
+
+
         primaryStage.show();
     }
 
