@@ -25,6 +25,9 @@ public class Controller {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 button.setText("SOSI HHHAHAHAHHAHAH");
+                if(gate){
+
+                }
             }
         });
 
